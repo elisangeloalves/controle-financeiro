@@ -8,7 +8,6 @@
 - SpringBoot Framework e familia versão: 2.4.4
 - H2 Database
 - Projeto Maven versão 4.0.0
-<<<<<<< HEAD
 		
 ######  Requisitos Funcionais
 	
@@ -37,7 +36,7 @@ Restrição de funcionalidade:
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/b2ea39d264b1850f2d3c?action=collection%2Fimport)
 
-   * será possível executar o Postman via browser ou local ( talvez precise fazer login para acessar o serviço );
+   * será possível executar o Postman via browser ou local (talvez precise fazer login para acessar o serviço);
    * após o postman abrir, escolha o Workspace "Mentoria Devs" e a coleção será importada automaticamente;
    * atenção: só é possível ter os end-points funcionando, após clonar o projeto e executá-lo em uma IDE de sua escolha;
 
