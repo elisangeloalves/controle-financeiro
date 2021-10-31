@@ -7,16 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="controle-financeiro" />
+        <module name="carteira-digital" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="controle-financeiro" target="17" />
+      <module name="carteira-digital" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="controle-financeiro" options="-parameters" />
+      <module name="carteira-digital" options="-parameters" />
     </option>
   </component>
 </project>
