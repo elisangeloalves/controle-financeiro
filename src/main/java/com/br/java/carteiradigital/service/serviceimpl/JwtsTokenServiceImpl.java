@@ -19,7 +19,7 @@ import java.util.Date;
 public class JwtsTokenServiceImpl implements TokenService {
 
     private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-    private static final int EXPIRATION_TIME = 30000;
+    private static final long EXPIRATION_TIME = 5*60*1000L;
 
     @Override
     public boolean isTokenValid(String token) {
@@ -30,7 +30,7 @@ public class JwtsTokenServiceImpl implements TokenService {
                     .parseClaimsJws(token);
             return true;
         } catch(JwtException e){
-            log.info("Erro na validacao do token: "+e.getMessage());
+            log.info("\nErro na validacao do token: "+e.getMessage());
             return false;
         }
     }
