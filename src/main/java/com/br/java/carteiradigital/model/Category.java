@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 //@RequiredArgsConstructor
 @NoArgsConstructor
 @Slf4j

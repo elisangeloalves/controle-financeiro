@@ -16,6 +16,6 @@ public class CreditEntry extends Entry {
 
     @Positive
     @NotNull
-    private BigDecimal amount = BigDecimal.ZERO;
-    private EntryType type = EntryType.CREDIT;
+    private final BigDecimal amount = BigDecimal.ZERO;
+    private final EntryType type = EntryType.CREDIT;
 }

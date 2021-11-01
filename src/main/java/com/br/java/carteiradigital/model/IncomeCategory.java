@@ -10,5 +10,5 @@ import java.io.Serializable;
 public class IncomeCategory extends Category implements Serializable {
     private static final long serialVersionUID = 6267609843462833374L;
 
-    private Tag tag = Tag.INCOMING;
+    private final Tag tag = Tag.INCOMING;
 }
