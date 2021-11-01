@@ -8,23 +8,19 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Table(name = "permissoes")
-@Getter
-@Setter
+@Table(name = "authorities")
 @NoArgsConstructor
+@RequiredArgsConstructor
+@Data
 public class Privilege implements Serializable {
     private static final long serialVersionUID = 1905122041950251207L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @NonNull
     private String name;
 
-    @ManyToMany(mappedBy = "privileges")
+    @ManyToMany(mappedBy = "authorities")
     private Collection<Role> roles;
-
-    public Privilege(String name) {
-        this.name = name;
-    }
 }

@@ -10,32 +10,27 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "roles")
-@Getter
-@Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
+@Data
 public class Role implements GrantedAuthority, Serializable {
     private static final long serialVersionUID = 1905122041950251207L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @NonNull
     private String name;
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
-
     @ManyToMany
     @JoinTable(
-            name = "roles_privileges",
+            name = "roles_authorities",
             joinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "privilege_id", referencedColumnName = "id"))
-    private Collection<Privilege> privileges;
-//
-    public Role(String name) {
-        this.name = name;
-    }
+                    name = "authority_id", referencedColumnName = "id"))
+    private Collection<Privilege> authorities;
 
     @Override
     public String getAuthority() {

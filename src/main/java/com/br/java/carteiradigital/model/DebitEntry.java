@@ -16,7 +16,7 @@ public class DebitEntry extends Entry {
 
     @Negative
     @NotNull
-    private BigDecimal amount = BigDecimal.ZERO;
-    private EntryType type = EntryType.DEBIT;
+    private final BigDecimal amount = BigDecimal.ZERO;
+    private final EntryType type = EntryType.DEBIT;
 
 }

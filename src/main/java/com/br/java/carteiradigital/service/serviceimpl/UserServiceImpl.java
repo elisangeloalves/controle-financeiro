@@ -1,21 +1,40 @@
 package com.br.java.carteiradigital.service.serviceimpl;
 
+import com.br.java.carteiradigital.controller.request.LoginRequest;
 import com.br.java.carteiradigital.controller.request.UserRequest;
+import com.br.java.carteiradigital.controller.response.TokenResponse;
 import com.br.java.carteiradigital.controller.response.UserResponse;
+import com.br.java.carteiradigital.model.Privilege;
+import com.br.java.carteiradigital.model.Role;
 import com.br.java.carteiradigital.model.User;
+import com.br.java.carteiradigital.repository.CategoryRepository;
+import com.br.java.carteiradigital.repository.PrivilegeRepository;
+import com.br.java.carteiradigital.repository.RoleRepository;
 import com.br.java.carteiradigital.repository.UserRepository;
+import com.br.java.carteiradigital.service.TokenService;
 import com.br.java.carteiradigital.service.UserService;
+import com.br.java.carteiradigital.utils.SetupDataLoader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,9 +43,17 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserServiceImpl implements UserService, UserDetailsService {
 
+    private static final String FIRSTNAME = "firstname";
     @Autowired
     private UserRepository userRepository;
-    private static final String FIRSTNAME = "firstname";
+    @Autowired
+    private TokenService tokenService;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private PrivilegeRepository privilegeRepository;
+    @Autowired
+    private SetupDataLoader setupDataLoader;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -113,6 +140,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserResponse createUser(UserRequest user) {
         User userModel = user.toModel();
+
+        Privilege readPrivilege = setupDataLoader
+                .createPrivilegeIfNotFound("READ_PRIVILEGE");
+        Role role = setupDataLoader
+                .createRoleIfNotFound("ROLE_USER", List.of(readPrivilege));
+        userModel.setRoles(List.of(role));
+
         return new UserResponse(userRepository.save(userModel));
     }
 
@@ -120,5 +154,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void delete(Long userId) {
         userRepository.deleteById(userId);
 
+    }
+
+    @Override
+    public TokenResponse userLogin(LoginRequest login, AuthenticationManager authenticationManager) {
+        String token = "null";
+        try {
+            UsernamePasswordAuthenticationToken data = login.convert();
+            Authentication authentication = authenticationManager.authenticate(data);
+            token = tokenService.generateToken(authentication);
+
+        } catch (BadCredentialsException e) {
+            throw new BadCredentialsException(e +": Email and/or password invalid!");
+        }
+        return new TokenResponse(token, "Bearer");
     }
 }
