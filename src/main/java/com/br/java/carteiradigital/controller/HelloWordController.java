@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/hello-word")
+@RequestMapping("/hello-world")
 public class HelloWordController {
 
     @GetMapping
     public ResponseEntity<String> sayHello(@RequestParam(value = "name", required = false) String nome) {
-        return new ResponseEntity<>("Ola " + nome, HttpStatus.OK);
+        nome = nome == null ? "mundo": nome;
+        return new ResponseEntity<>("Ola "+nome+"!", HttpStatus.OK);
     }
 }
