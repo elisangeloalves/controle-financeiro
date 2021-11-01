@@ -4,6 +4,7 @@ import com.br.java.carteiradigital.model.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @NoArgsConstructor
 @Data
@@ -19,10 +20,11 @@ public class UserRequest {
     private String password;
 
     public User toModel() {
+        String encryptedPassword = new BCryptPasswordEncoder().encode(password);
         return new User(
-                firstname,
-                lastname,
+                firstname.toUpperCase(),
+                lastname.toUpperCase(),
                 email,
-                password);
+                encryptedPassword);
     }
 }

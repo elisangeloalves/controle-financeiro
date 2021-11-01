@@ -20,10 +20,10 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> listUsers(@RequestParam(value = "pagina", required = false) Integer page,
-                                          @RequestParam(value = "nome", required = false) String firstname,
-                                          @RequestParam(value = "sobrenome", required = false) String lastname,
-                                          @RequestParam(value = "email", required = false) String email) {
+    public ResponseEntity<List<UserResponse>> listUsers(@RequestParam(required = false) Integer page,
+                                          @RequestParam(required = false) String firstname,
+                                          @RequestParam(required = false) String lastname,
+                                          @RequestParam(required = false) String email) {
         List<String> request = Arrays.asList(firstname, lastname, email);
         List<UserResponse> userlist = userService.listUsers(request, page);
         return new ResponseEntity<>(userlist, HttpStatus.OK);
