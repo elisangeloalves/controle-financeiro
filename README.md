@@ -1,10 +1,10 @@
 # PROJETO CONTROLE FINANCEIRO - API RESTFULL
-   Aplicação desenvolvida para disponibilizar uma API REST que possibilite ao usuario gerenciar seus gastos atraves do lancamentos de despesas e receitas com a opção de categorizar os lançamentos.
+   Aplicação desenvolvida para disponibilizar uma API REST (Backend) que possibilite ao usuario gerenciar seus gastos atraves do lancamentos de despesas e receitas com a opção de categorizar os lançamentos.
 
 ### Descrição técnica do projeto:
 
 ###### Tecnologias utilizadas no projeto:
-- Java versão 11
+- Java versão 17
 - SpringBoot Framework e familia versão: 2.4.4
 - H2 Database
 - Projeto Maven versão 4.0.0
@@ -27,8 +27,20 @@ Restrição de funcionalidade:
 		
 ######  Requisitos não funcionais
 		
-- Toda ação do usuário sobre os lançamentos é autenticada (acesso somente com token válido)
-- Campos de data serão exibidos na API no formato ISO (yyyy-MM-dd)
+- Toda ação do usuário sobre os lançamentos é autenticada (acesso somente com token válido);
+- Autenticação configurada para expirar em 5 minutos;
+- Campos de data serão exibidos na API no formato ISO (yyyy-MM-dd);
+
+
+> OBS: até este momento estão implementados as seguintes funcionalidades:
+
+     segurança da aplicação está ativa e funcional;
+     é possível fazer o cadastro de um usuário na aplicação;
+     é possível fazer login na aplicação com as credenciais de um usuário cadastrado;
+     é possivel fazer a listagem de usuários se o usuario logado possuir pefil de administrador (ADMIN);
+     usuários sem perfil "admin" possui acesso negado a rota de listagem de usuários (usuários são cadastrados com perfil padrão).
+
+Demais funcionalidades continuam sendo implementadas
 
 ##  Rotas de acesso
 
