@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="carteira-digital" target="17" />
+      <module name="carteira-digital" target="16" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
