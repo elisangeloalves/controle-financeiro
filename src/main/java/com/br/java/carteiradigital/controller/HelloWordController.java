@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWordController {
 
     @GetMapping
-    public ResponseEntity<String> sayHello(@RequestParam(value = "name", required = false) String nome) {
-        nome = nome == null ? "mundo": nome;
-        return new ResponseEntity<>("Ola "+nome+"!", HttpStatus.OK);
+    public ResponseEntity<String> sayHello(@RequestParam(value = "name", required = false) String name) {
+        name = name == null ? "mundo": name;
+        return new ResponseEntity<>("Ola "+name+"!", HttpStatus.OK);
     }
 }

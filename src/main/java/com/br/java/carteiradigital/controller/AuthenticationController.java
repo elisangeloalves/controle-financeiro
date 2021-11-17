@@ -2,8 +2,6 @@ package com.br.java.carteiradigital.controller;
 
 import com.br.java.carteiradigital.controller.request.LoginRequest;
 import com.br.java.carteiradigital.controller.response.TokenResponse;
-import com.br.java.carteiradigital.model.User;
-import com.br.java.carteiradigital.service.TokenService;
 import com.br.java.carteiradigital.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +21,16 @@ public class AuthenticationController {
 
     private final AuthenticationManager manager;
 
-    public AuthenticationController(UserService userService, AuthenticationManager authenticationManager) {
+    public AuthenticationController(
+            UserService userService,
+            AuthenticationManager authenticationManager
+    ) {
         this.userService = userService;
         this.manager = authenticationManager;
     }
 
     @PostMapping
-    public ResponseEntity<TokenResponse> userLogin(@RequestBody @Valid LoginRequest request) {
-        return new ResponseEntity<>(userService.userLogin(request, manager), HttpStatus.OK);
+    public ResponseEntity<TokenResponse> login(@RequestBody @Valid LoginRequest request) {
+        return new ResponseEntity<>(userService.login(request, manager), HttpStatus.OK);
     }
 }
