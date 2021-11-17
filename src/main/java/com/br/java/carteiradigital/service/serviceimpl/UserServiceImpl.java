@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<UserResponse> findAll(int page) {
         Pageable pageable = PageRequest.of(page, 30, Sort.Direction.DESC, "email");
         return userRepository.findAll(pageable).stream()
-                .map(UserResponse::new).collect(Collectors.toList());
+                .map(UserResponse::new).toList();
     }
 
     @Override
@@ -116,29 +116,29 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserResponse findByEmail(String email) {
         User foundedUser = userRepository.findByEmail(email.toLowerCase());
-        if (foundedUser == null) {
-            log.info("Nenhum usuario encontrado com email informado.");
-            return null;
-        }
-        return new UserResponse(foundedUser);
+        return foundedUser!= null?
+                new UserResponse(foundedUser)
+                :null;
     }
 
     @Override
     public User findById(Long userId) {
         Optional<User> foundedUser = userRepository.findById(userId);
-        return foundedUser.orElse(null);
-    }
-
-    @Override
-    public User update(User user) {
-        Optional<User> foundedUser = userRepository.findById(user.getId());
         return foundedUser.isPresent()?
-                userRepository.save(user)
+                foundedUser.get()
                 :null;
     }
 
     @Override
-    public UserResponse createUser(UserRequest user) {
+    public UserResponse update(User user) {
+        Optional<User> foundedUser = userRepository.findById(user.getId());
+        return foundedUser.isPresent()?
+                new UserResponse(userRepository.save(user))
+                :null;
+    }
+
+    @Override
+    public UserResponse create(UserRequest user) {
         User userModel = user.toModel();
 
         Privilege readPrivilege = setupDataLoader
@@ -157,7 +157,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public TokenResponse userLogin(LoginRequest login, AuthenticationManager authenticationManager) {
+    public TokenResponse login(LoginRequest login, AuthenticationManager authenticationManager) {
         String token = "null";
         try {
             UsernamePasswordAuthenticationToken data = login.convert();
