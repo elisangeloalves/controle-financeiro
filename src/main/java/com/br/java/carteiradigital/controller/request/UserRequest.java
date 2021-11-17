@@ -1,13 +1,11 @@
 package com.br.java.carteiradigital.controller.request;
 
 import com.br.java.carteiradigital.model.User;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@NoArgsConstructor
-@Data
+@RequiredArgsConstructor
+@Getter
 public class UserRequest {
 
     @NonNull

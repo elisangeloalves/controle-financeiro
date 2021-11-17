@@ -1,18 +1,12 @@
 package com.br.java.carteiradigital.controller.response;
 
 import com.br.java.carteiradigital.model.User;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-@NoArgsConstructor
-@RequiredArgsConstructor
-@Data
+@Getter
 @Slf4j
 public class UserResponse {
 
@@ -30,6 +24,6 @@ public class UserResponse {
     }
 
     public static List<UserResponse> listAllUser(List<User> users) {
-        return users.stream().map(UserResponse::new).collect(Collectors.toList());
+        return users.stream().map(UserResponse::new).toList();
     }
 }
