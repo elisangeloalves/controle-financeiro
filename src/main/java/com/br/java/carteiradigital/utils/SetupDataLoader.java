@@ -9,6 +9,7 @@ import com.br.java.carteiradigital.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-//@Configuration
+@Configuration
 @Service
+@Transactional
 public class SetupDataLoader {
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -32,7 +31,7 @@ public class SetupDataLoader {
     private PrivilegeRepository privilegeRepository;
 
     @Bean
-    public CommandLineRunner commandLineRunner() {
+    public CommandLineRunner commandLineRunner(UserRepository userRepository) {
         return args -> {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -44,11 +43,8 @@ public class SetupDataLoader {
             List<Privilege> adminPrivileges = Arrays.asList(
                     readPrivilege, writePrivilege);
 
-            createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
-            createRoleIfNotFound("ROLE_USER", List.of(readPrivilege));
-
-            Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-            Role userRole = roleRepository.findByName("ROLE_USER");
+            Role adminRole = createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
+            Role userRole = createRoleIfNotFound("ROLE_USER", List.of(readPrivilege));
 
             User pedro = new User("PEDRO", "SILVA", "paulo@gmail.com", passwordEncoder.encode("123456"));
             User maria = new User("MARIA", "ALVES", "maria@gmail.com", passwordEncoder.encode("123456"));
@@ -61,7 +57,6 @@ public class SetupDataLoader {
         };
     }
 
-    @Transactional
     public Privilege createPrivilegeIfNotFound(String name) {
 
         Optional<Privilege> privilege = privilegeRepository.findByName(name);
@@ -72,16 +67,15 @@ public class SetupDataLoader {
         return privilege.get();
     }
 
-    @Transactional
     public Role createRoleIfNotFound(
             String name, Collection<Privilege> privileges) {
 
-        Role role = roleRepository.findByName(name);
-        if (role == null) {
-            role = new Role(name);
-            role.setAuthorities(privileges);
-            roleRepository.save(role);
+        Optional<Role> role = roleRepository.findByName(name);
+        if (role.isEmpty()) {
+            role = Optional.of(new Role(name));
+            role.get().setAuthorities(privileges);
+            roleRepository.save(role.get());
         }
-        return role;
+        return role.get();
     }
 }
