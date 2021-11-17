@@ -16,7 +16,8 @@ import java.util.List;
 @Table(name = "users")
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 public class User implements UserDetails, Serializable {
     private static final long serialVersionUID =  1322456498743516L;
 
