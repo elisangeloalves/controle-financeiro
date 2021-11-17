@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -30,8 +30,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@RequestBody @Valid UserRequest request) {
-        UserResponse newUser = userService.createUser(request);
+    public ResponseEntity<UserResponse> create(@RequestBody @Valid UserRequest request) {
+        UserResponse newUser = userService.create(request);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 }

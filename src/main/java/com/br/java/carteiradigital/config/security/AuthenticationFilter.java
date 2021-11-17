@@ -3,6 +3,7 @@ package com.br.java.carteiradigital.config.security;
 import com.br.java.carteiradigital.model.User;
 import com.br.java.carteiradigital.service.TokenService;
 import com.br.java.carteiradigital.service.UserService;
+import org.dom4j.util.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -38,7 +39,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         String token = request.getHeader("Authorization");
 
         if (token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
-            return null;
+            return "token";
         }
         return token.substring(7);
     }

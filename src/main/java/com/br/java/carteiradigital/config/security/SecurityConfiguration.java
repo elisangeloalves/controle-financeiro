@@ -62,9 +62,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/hello-world").permitAll()
-                .antMatchers(GET, "/usuarios").hasRole("ADMIN")
-                .antMatchers(POST, "/usuarios", "/login").permitAll()
-                .antMatchers("/h2-console/*", "/actuator/*").hasRole("ADMIN")
+                .antMatchers(GET, "/users").hasRole("ADMIN")
+                .antMatchers(POST, "/users", "/login").permitAll()
+                .antMatchers("/h2-console/*", "/healthcheck", "/prometheus", "/info", "/metrics").hasRole("USER")
                 .anyRequest().authenticated()
 // obriga o usuario a estar autenticado em todas outras rotas
                 .and().csrf().disable()

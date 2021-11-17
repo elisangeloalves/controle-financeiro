@@ -1,9 +1,9 @@
 package com.br.java.carteiradigital.controller.response;
 
 
-import lombok.*;
-
-import javax.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
