@@ -1,0 +1,762 @@
+{
+	"info": {
+		"_postman_id": "83cbb52f-d70e-4396-b5e9-3982d0cd3044",
+		"name": "carteira-digital",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "fazer cadastro de usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Novo Usuario\",\r\n    \"password\": \"password\",\r\n    \"email\": \"usuario@usuario.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fazer login / autenticar usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"usuario@usuario.com\",\r\n    \"password\": \"123456\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar categorias",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/usuarios/2/categorias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"usuarios",
+						"2",
+						"categorias"
+					]
+				},
+				"description": "listar todas categorias de um usuario especifico"
+			},
+			"response": []
+		},
+		{
+			"name": "cadastrar nova categoria",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"label\": \"assinatura recorrente\",\r\n    \"tag\": \"despesa\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/usuarios/2/categorias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"usuarios",
+						"2",
+						"categorias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar lancamentos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgZGUgQ29udHJvbGUgRmluYW5jZWlybyAtIEVsaXNhbmdlbG8gQWx2ZXMgRmVycmVpcmEiLCJzdWIiOiIyIiwiaWF0IjoxNjMzNjE3MzE0LCJleHAiOjE2MzM2MTc2MTR9.uGMZuls7nXFQ4RFZzEj7Gg2BCgcl7mcf02Zyn2Fvj_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/usuarios/02/lancamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"usuarios",
+						"02",
+						"lancamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adicionar um novo lançamento",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"protecao veicular\",\r\n    \"entryType\": \"debito\",\r\n    \"amount\": 112.33,\r\n    \"categoryId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/usuarios/2/lancamentos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"usuarios",
+						"2",
+						"lancamentos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista usuarios (gerencial)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar resumo de lançamentos de todos os meses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/usuarios/2/lancamentos/resumo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"usuarios",
+						"2",
+						"lancamentos",
+						"resumo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar resumo de lancamentos de um mes especifico",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/usuarios/2/lancamentos/resumo?mes=julho&ano=2020",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"usuarios",
+						"2",
+						"lancamentos",
+						"resumo"
+					],
+					"query": [
+						{
+							"key": "mes",
+							"value": "julho"
+						},
+						{
+							"key": "ano",
+							"value": "2020"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar lancamentos por um mês especifica",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgZGUgQ29udHJvbGUgRmluYW5jZWlybyAtIEVsaXNhbmdlbG8gQWx2ZXMgRmVycmVpcmEiLCJzdWIiOiIyIiwiaWF0IjoxNjMxMTM1NTQwLCJleHAiOjE2MzExMzU4NDB9.qHQIBkK-ZxsQ0Y4wV0Yg1SZX6aC9a1dPKGi6RGoTvMg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/usuarios/2/lancamentos?mes=outubro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"usuarios",
+						"2",
+						"lancamentos"
+					],
+					"query": [
+						{
+							"key": "mes",
+							"value": "outubro"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar lancamentos por uma categoria especifica",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgZGUgQ29udHJvbGUgRmluYW5jZWlybyAtIEVsaXNhbmdlbG8gQWx2ZXMgRmVycmVpcmEiLCJzdWIiOiIyIiwiaWF0IjoxNjMxMTM1NTQwLCJleHAiOjE2MzExMzU4NDB9.qHQIBkK-ZxsQ0Y4wV0Yg1SZX6aC9a1dPKGi6RGoTvMg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/usuarios/2/lancamentos?categoria=renda+principal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"usuarios",
+						"2",
+						"lancamentos"
+					],
+					"query": [
+						{
+							"key": "categoria",
+							"value": "renda+principal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar lancamentos por mes e categoria especifica",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgZGUgQ29udHJvbGUgRmluYW5jZWlybyAtIEVsaXNhbmdlbG8gQWx2ZXMgRmVycmVpcmEiLCJzdWIiOiIyIiwiaWF0IjoxNjMxMTM1NTQwLCJleHAiOjE2MzExMzU4NDB9.qHQIBkK-ZxsQ0Y4wV0Yg1SZX6aC9a1dPKGi6RGoTvMg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/usuarios/2/lancamentos?mes=fevereiro&categoria=renda+principal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"usuarios",
+						"2",
+						"lancamentos"
+					],
+					"query": [
+						{
+							"key": "mes",
+							"value": "fevereiro"
+						},
+						{
+							"key": "categoria",
+							"value": "renda+principal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar um lançamento específico",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    \"seguro do carro\",\r\n    \"financiamento fies\",\r\n    \"conta de internet\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/controle-financeiro/usuarios/2/lancamentos/09",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controle-financeiro",
+						"usuarios",
+						"2",
+						"lancamentos",
+						"09"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rota Helo world",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/hello-world?name=Elisângelo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"hello-world"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Elisângelo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checar saude da api",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"usuario@usuario.com\",\r\n    \"password\": \"123456\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/healthcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checar informações da api",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"usuario@usuario.com\",\r\n    \"password\": \"123456\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checar métricas da api",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"usuario@usuario.com\",\r\n    \"password\": \"123456\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/metrics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "monitoramento com prometheus",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"usuario@usuario.com\",\r\n    \"password\": \"123456\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carteira-digital/prometheus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carteira-digital",
+						"prometheus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
