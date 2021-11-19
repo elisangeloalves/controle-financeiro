@@ -3,7 +3,6 @@ package com.br.java.carteiradigital.model;
 import lombok.*;
 
 import javax.validation.constraints.Negative;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @EqualsAndHashCode

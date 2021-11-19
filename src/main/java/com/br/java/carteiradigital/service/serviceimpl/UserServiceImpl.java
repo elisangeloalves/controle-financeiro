@@ -1,5 +1,6 @@
 package com.br.java.carteiradigital.service.serviceimpl;
 
+import com.br.java.carteiradigital.config.validation.ApiErrorException;
 import com.br.java.carteiradigital.controller.request.LoginRequest;
 import com.br.java.carteiradigital.controller.request.UserRequest;
 import com.br.java.carteiradigital.controller.response.TokenResponse;
@@ -7,7 +8,6 @@ import com.br.java.carteiradigital.controller.response.UserResponse;
 import com.br.java.carteiradigital.model.Privilege;
 import com.br.java.carteiradigital.model.Role;
 import com.br.java.carteiradigital.model.User;
-import com.br.java.carteiradigital.repository.CategoryRepository;
 import com.br.java.carteiradigital.repository.PrivilegeRepository;
 import com.br.java.carteiradigital.repository.RoleRepository;
 import com.br.java.carteiradigital.repository.UserRepository;
@@ -20,24 +20,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -78,7 +71,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             return findAllByLastname(request.get(1), page);
         }
         else if (request.get(2) != null) {
-            return Arrays.asList(findByEmail(request.get(2)));
+            return List.of(findByEmail(request.get(2)));
         }
         else {
             return findAll(page);
@@ -124,9 +117,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User findById(Long userId) {
         Optional<User> foundedUser = userRepository.findById(userId);
-        return foundedUser.isPresent()?
-                foundedUser.get()
-                :null;
+        return foundedUser.orElse(null);
     }
 
     @Override
@@ -158,14 +149,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public TokenResponse login(LoginRequest login, AuthenticationManager authenticationManager) {
-        String token = "null";
+        String token;
         try {
             UsernamePasswordAuthenticationToken data = login.convert();
             Authentication authentication = authenticationManager.authenticate(data);
             token = tokenService.generateToken(authentication);
 
         } catch (BadCredentialsException e) {
-            throw new BadCredentialsException(e +": Email and/or password invalid!");
+            throw new ApiErrorException(e.getLocalizedMessage(), ": Email and/or password invalid!", HttpStatus.PRECONDITION_FAILED);
         }
         return new TokenResponse(token, "Bearer");
     }
