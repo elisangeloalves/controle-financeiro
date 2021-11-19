@@ -2,20 +2,21 @@ package com.br.java.carteiradigital.controller.response;
 
 import com.br.java.carteiradigital.model.Category;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
 @Slf4j
 public class CategoryResponse {
 
-    @NonNull
+    @NotBlank
     private String name;
-    @NonNull
+    @NotNull
     private Long id;
-    @NonNull
+    @NotBlank
     private String tag;
 
     public CategoryResponse(Category category) {
