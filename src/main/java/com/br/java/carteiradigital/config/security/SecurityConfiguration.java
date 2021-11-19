@@ -64,7 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/hello-world").permitAll()
                 .antMatchers(GET, "/users").hasRole("ADMIN")
                 .antMatchers(POST, "/users", "/login").permitAll()
-                .antMatchers("/h2-console/*", "/healthcheck", "/prometheus", "/info", "/metrics").hasRole("USER")
+                .antMatchers( "/metrics", "/prometheus","/h2-console/*", "/healthcheck", "/info").hasRole("USER")
                 .anyRequest().authenticated()
 // obriga o usuario a estar autenticado em todas outras rotas
                 .and().csrf().disable()

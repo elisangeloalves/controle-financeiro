@@ -3,7 +3,6 @@ package com.br.java.carteiradigital.controller;
 
 import com.br.java.carteiradigital.controller.request.CategoryRequest;
 import com.br.java.carteiradigital.controller.response.CategoryResponse;
-import com.br.java.carteiradigital.model.Category;
 import com.br.java.carteiradigital.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +40,4 @@ public class CategoryController {
         return ResponseEntity.created(uri)
                 .body(newCategory);
     }
-
-    public void deleteCategory() {
-
-    }
-
 }

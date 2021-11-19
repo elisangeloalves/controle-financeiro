@@ -1,10 +1,13 @@
 package com.br.java.carteiradigital.controller.request;
 
+import com.br.java.carteiradigital.config.validation.ApiErrorException;
 import com.br.java.carteiradigital.model.Category;
 import com.br.java.carteiradigital.model.Tag;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Arrays;
 
 @RequiredArgsConstructor
@@ -12,9 +15,9 @@ import java.util.Arrays;
 @Getter
 public class CategoryRequest {
 
-    @NonNull
+    @NotBlank
     private String name;
-    @NonNull
+    @NotBlank
     private String tag;
 
     public Category toModel() {
@@ -23,7 +26,7 @@ public class CategoryRequest {
                 .anyMatch(c -> tag.equalsIgnoreCase(c.toString()));
 
         if (!tagIsValid) {
-            throw new RuntimeException(tag+" is not a valid values");
+            throw new ApiErrorException("tag",tag+" is not a valid value", HttpStatus.BAD_REQUEST);
         }
 
         Tag newTag = Tag.valueOf(tag.toUpperCase());

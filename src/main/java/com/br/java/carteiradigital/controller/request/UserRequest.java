@@ -4,17 +4,19 @@ import com.br.java.carteiradigital.model.User;
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.validation.constraints.NotBlank;
+
 @RequiredArgsConstructor
 @Getter
 public class UserRequest {
 
-    @NonNull
+    @NotBlank
     private String firstname;
-    @NonNull
+    @NotBlank
     private String lastname;
-    @NonNull
+    @NotBlank
     private String email;
-    @NonNull
+    @NotBlank
     private String password;
 
     public User toModel() {

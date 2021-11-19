@@ -4,17 +4,19 @@ import com.br.java.carteiradigital.model.User;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
 @Slf4j
 public class UserResponse {
 
-    @NonNull
+    @NotBlank
     private String fullName;
-    @NonNull
+    @NotBlank
     private String email;
-    @NonNull
+    @NotNull
     private Long id;
 
     public UserResponse(User user) {
