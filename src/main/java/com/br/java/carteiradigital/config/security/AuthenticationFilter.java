@@ -3,7 +3,6 @@ package com.br.java.carteiradigital.config.security;
 import com.br.java.carteiradigital.model.User;
 import com.br.java.carteiradigital.service.TokenService;
 import com.br.java.carteiradigital.service.UserService;
-import org.dom4j.util.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
