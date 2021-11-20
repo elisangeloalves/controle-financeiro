@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import java.io.Serial;
 import java.io.Serializable;
 
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
 @Slf4j
 @NoArgsConstructor
 public abstract class Entry implements Serializable {
+    @Serial
     private static final long serialVersionUID = 2114394854482527978L;
 
     @Id

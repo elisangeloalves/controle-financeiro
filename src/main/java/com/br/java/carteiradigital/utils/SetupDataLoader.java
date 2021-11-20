@@ -49,7 +49,7 @@ public class SetupDataLoader {
             User pedro = new User("PEDRO", "SILVA", "paulo@gmail.com", passwordEncoder.encode("123456"));
             User maria = new User("MARIA", "ALVES", "maria@gmail.com", passwordEncoder.encode("123456"));
 
-            pedro.setRoles(Arrays.asList(adminRole));
+            pedro.setRoles(List.of(adminRole));
             maria.setRoles(List.of(userRole));
 
             userRepository.save(pedro);

@@ -13,15 +13,15 @@ import java.util.List;
 public class CategoryResponse {
 
     @NotBlank
-    private String name;
+    private final String name;
     @NotNull
-    private Long id;
+    private final Long id;
     @NotBlank
-    private String tag;
+    private final String tag;
 
     public CategoryResponse(Category category) {
         this.id = category.getId();
-        this.name = category.getName();
+        this.name = category.getLabel();
         this.tag = category.getTag().toString();
     }
 

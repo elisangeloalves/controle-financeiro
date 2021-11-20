@@ -13,11 +13,11 @@ import java.util.List;
 public class UserResponse {
 
     @NotBlank
-    private String fullName;
+    private final String fullName;
     @NotBlank
-    private String email;
+    private final String email;
     @NotNull
-    private Long id;
+    private final Long id;
 
     public UserResponse(User user) {
         this.fullName = user.getFirstname() + " " + user.getLastname();

@@ -37,7 +37,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     private String restoreToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
-        if (token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
+        if (token == null || !token.startsWith("Bearer ")) {
             return "token";
         }
         return token.substring(7);
