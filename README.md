@@ -63,7 +63,7 @@ OBS: funcionalidades implementadas até este momento:
 #### DICA: 
 para facilitar a visualização e o acesso aos end-points da api, o acesso as rotas pode ser feito através do botao abaixo:
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/b2ea39d264b1850f2d3c?action=collection%2Fimport)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/13559334-83cbb52f-d70e-4396-b5e9-3982d0cd3044?action=collection%2Ffork&collection-url=entityId%3D13559334-83cbb52f-d70e-4396-b5e9-3982d0cd3044%26entityType%3Dcollection%26workspaceId%3Df66865d8-0b85-4a2b-aa1f-f809d310cb8f#?env%5BDevelopment%5D=W3sia2V5IjoidG9rZW4iLCJ2YWx1ZSI6Im51bGwiLCJlbmFibGVkIjp0cnVlfV0=)
 
    * será possível executar o Postman via browser ou local (talvez precise fazer login para acessar o serviço);
    * após o postman abrir, escolha o Workspace "Mentoria Devs" e a coleção será importada automaticamente;
