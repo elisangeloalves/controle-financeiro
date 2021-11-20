@@ -1,6 +1,7 @@
 package com.br.java.carteiradigital.controller.request;
 
 import com.br.java.carteiradigital.config.validation.ApiErrorException;
+import com.br.java.carteiradigital.config.validation.UniqueValue;
 import com.br.java.carteiradigital.model.Category;
 import com.br.java.carteiradigital.model.Tag;
 import lombok.*;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 public class CategoryRequest {
 
     @NotBlank
+    @UniqueValue(domainClass = Category.class, field = "label")
     private String name;
     @NotBlank
     private String tag;
