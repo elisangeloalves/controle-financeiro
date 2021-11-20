@@ -61,14 +61,14 @@ OBS: funcionalidades implementadas até este momento:
 ##  Rotas de acesso
 
 #### DICA: 
-a documentação referente aos parâmetros de entrada e saída de cada rota da API, bem como a visualização do funcionamento e o acesso aos end-points da aplicação, podem ser feito através do botao abaixo:
+a documentação referente aos parâmetros de entrada e saída de cada rota da API, bem como a visualização do funcionamento e o acesso aos end-points da aplicação, podem ser feito através do botão abaixo:
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/spacecraft-physicist-77814283/workspace/digital-wallet/documentation/13559334-83cbb52f-d70e-4396-b5e9-3982d0cd3044)
 
 	* será possível executar o Postman via browser ou local (talvez precise fazer login para acessar o serviço);
-	* escolha o que melhor lhe adeque, e prosiga com o passo-a-passo de configuração de conta e aceite de termosç
-	* quando chegar na janela de escolha do WorkSpace, escolha o Workspace "My WorkSpace" e a coleção será importada automaticamente;
-   	* será carregada a janela de documentação dos end-points da API. O acesso a cada rota poderá ser feito pelo menu do lado esquerdo da janela clicando na aba "carteira-digital" ;
+	* escolha o que melhor lhe adeque, e prosiga com o passo-a-passo de configuração de conta e aceite de termos;
+	* caso chegue na janela de escolha do WorkSpace, escolha o Workspace "Digital Wallet" e a coleção será importada automaticamente;
+   	* será carregada a janela de documentação dos end-points da API. O acesso a cada rota poderá ser feito pelo menu do lado esquerdo da janela clicando na aba "carteira-digital" para expandir as rotas;
    
    	* atenção: só é possível ter os end-points funcionando, após clonar o projeto e executá-lo em uma IDE de sua escolha ou via linha de comando;
 
