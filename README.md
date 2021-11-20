@@ -63,7 +63,7 @@ OBS: funcionalidades implementadas até este momento:
 #### DICA: 
 a documentação referente aos parâmetros de entrada e saída de cada rota da API, bem como a visualização do funcionamento e o acesso aos end-points da aplicação, podem ser feito através do botao abaixo:
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://web.postman.co/workspace/44557516-f9a9-41d4-8fe4-067356994f3d/documentation/18449586-740f34fa-aecc-4a30-bd8a-797733696909)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://web.postman.co/workspace/My-Workspace~261564c1-dc2f-463a-8b16-11c58766bd1c/collection/13559334-83cbb52f-d70e-4396-b5e9-3982d0cd3044?ctx=documentation)
 
 	* será possível executar o Postman via browser ou local (talvez precise fazer login para acessar o serviço);
 	* escolha o que melhor lhe adeque, e prosiga com o passo-a-passo de configuração de conta e aceite de termosç
