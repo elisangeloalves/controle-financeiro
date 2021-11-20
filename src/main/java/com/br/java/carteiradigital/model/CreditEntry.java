@@ -5,7 +5,7 @@ import lombok.*;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor
 @Getter
 @Setter

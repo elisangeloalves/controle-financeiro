@@ -3,6 +3,7 @@ package com.br.java.carteiradigital.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -13,6 +14,7 @@ import java.util.Collection;
 @Getter
 @Setter
 public class Privilege implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1905122041950251207L;
 
     @Id
