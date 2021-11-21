@@ -29,8 +29,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -70,7 +69,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             return findAllByLastname(request.get(1), page);
         }
         else if (request.get(2) != null) {
-            return List.of(findByEmail(request.get(2)));
+            return Collections.singletonList(findByEmail(request.get(2)));
         }
         else {
             return findAll(page);

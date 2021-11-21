@@ -19,16 +19,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public ResponseEntity<List<UserResponse>> listUsers(@RequestParam(required = false) Integer page,
-                                          @RequestParam(required = false) String firstname,
-                                          @RequestParam(required = false) String lastname,
-                                          @RequestParam(required = false) String email) {
-        List<String> request = Arrays.asList(firstname, lastname, email);
-        List<UserResponse> userlist = userService.listUsers(request, page);
-        return new ResponseEntity<>(userlist, HttpStatus.OK);
-    }
-
     @PostMapping
     public ResponseEntity<UserResponse> create(@RequestBody @Valid UserRequest request) {
         UserResponse newUser = userService.create(request);

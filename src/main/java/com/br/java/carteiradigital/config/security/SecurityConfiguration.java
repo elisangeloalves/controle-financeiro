@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/hello-world").permitAll()
-                .antMatchers(GET, "/users").hasRole("ADMIN")
+                .antMatchers(GET, "/management").hasRole("ADMIN")
                 .antMatchers(POST, "/users", "/login").permitAll()
                 .antMatchers( "/metrics", "/prometheus","/h2-console/*", "/healthcheck", "/info").hasRole("USER")
                 .anyRequest().authenticated()
