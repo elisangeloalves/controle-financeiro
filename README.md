@@ -77,6 +77,7 @@ a documentação referente aos parâmetros de entrada e saída de cada rota da A
 	http://localhost:8080/digital-wallet/hello-world
 
 
+
 ###    Rotas para requisições do tipo POST
 
 ###### Cadastrar usuario:
