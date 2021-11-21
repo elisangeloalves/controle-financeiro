@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = {UniqueValueValidator.class})
 @Target(value = ElementType.FIELD)
 public @interface UniqueValue {
-    String message() default "This value can not be duplicated in the database!";
+    String message() default "This field can not be duplicated in the database!";
 
     Class<?>[] groups() default{};
 

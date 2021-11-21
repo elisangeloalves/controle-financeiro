@@ -1,8 +1,11 @@
 package com.br.java.carteiradigital.controller;
 
 
+import com.br.java.carteiradigital.config.validation.ApiErrorException;
+import com.br.java.carteiradigital.config.validation.Validation;
 import com.br.java.carteiradigital.controller.request.CategoryRequest;
 import com.br.java.carteiradigital.controller.response.CategoryResponse;
+import com.br.java.carteiradigital.model.User;
 import com.br.java.carteiradigital.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +18,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/users/{user_id}/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -25,7 +28,9 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoryResponse>> lisCategories() {
+    public ResponseEntity<List<CategoryResponse>> lisCategories(Authentication authentication,
+                                                                @PathVariable Long user_id) {
+        Validation.isUserAuthorized(authentication, user_id);
         return new ResponseEntity<>(categoryService.listCategories(), HttpStatus.OK);
     }
 
@@ -33,10 +38,14 @@ public class CategoryController {
     public ResponseEntity<CategoryResponse> createCategory(
             @RequestBody @Valid CategoryRequest request,
             UriComponentsBuilder uriBuilder,
-            Authentication authentication
+            Authentication authentication,
+            @PathVariable Long user_id
     ) {
+        Validation.isUserAuthorized(authentication, user_id);
         CategoryResponse newCategory = categoryService.createCategory(request.toModel());
-        URI uri = uriBuilder.path("/categories/{id}").buildAndExpand(newCategory.getId()).toUri();
+
+        URI uri = uriBuilder.path("users/{user_id}/categories/{id}")
+                .buildAndExpand(user_id,  newCategory.getId()).toUri();
         return ResponseEntity.created(uri)
                 .body(newCategory);
     }
