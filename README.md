@@ -1,5 +1,5 @@
 # PROJETO CONTROLE FINANCEIRO - API RESTFULL
-   Aplicação desenvolvida para disponibilizar uma API RESTFULL (Backend) que possibilite ao usuario gerenciar seus gastos através do lancamentos de despesas e receitas com a opção de categorizar os lançamentos.
+   Aplicação (API RESTFULL - backend) desenvolvida para possibilitar ao usuario organizar e gerenciar seus gastos financeiros através do lançamentos de despesas e receitas de modo a representar entradas e saídas de forma categorizada.
 
 ### Descrição técnica do projeto:
 
@@ -11,14 +11,16 @@
 		
 #####  Requisitos Funcionais
 	
-* Nesta aplicação, o usuario poderá criar uma conta onde será possível gerenciar suas receitas e gastos;
-* Somente usuários cadastrados poderão acessar as seguintes funcionalidades:
+* O usuario poderá criar uma conta, onde será possível gerenciar suas receitas e gastos;
+* Somente usuários cadastrados poderão acessar a aplicação;
+* Um usuário deve ter acesso somente a seus próprios lançamentos;
+* Será possível acessar as seguintes funcionalidades:
 ####
-    - incluír lançamentos seja de crédito ou débito contendo valor, data e categoria(opcional);
+    - incluír lançamentos contendo valor, data e categoria(opcional);
     - atualizar ou excluir lançamentos de uma conta;
     - criar categorias subclassificadas como despesa ou receita;
-    - adicionar categorias aos lançaments para melhorar organização da conta;
-    - adicinar uma categoria a um lançamento já cadastrado na aplicação pertecente ao usuário;
+    - adicionar categorias aos lançamentos para melhorar a organização da conta;
+    - adicionar categoria a um lançamento previamente cadastrado na aplicação pelo usuário;
     - excluir uma categoria que foi cadastrada pelo usuário;
     - listar todas as categorias cadastradas pelo usuário;
     - listar todos os lançamentos criado pelo usuario;
@@ -30,9 +32,6 @@
     - listar resumo de lançamentos das receitas, despesas e saldos por meses;
     - listar resumo de um mês específico;
 
-* Um usuário deve ter acesso somente a seus próprios lançamentos.
-		
-		
 ######  Requisitos não funcionais
 		
 - Toda ação do usuário sobre os lançamentos é autenticada (acesso somente com token válido);
@@ -47,7 +46,8 @@ OBS: funcionalidades implementadas até este momento:
 >    * cadastro de categorias;
 >    * listagem de categoris pelo usuário;
 >
- Extras:
+
+Extras:
 >    - segurança da aplicação (está ativa e funcional) com autentição via JWT token;
 >    - usuario logado com pefil "ADMIN" podem listar usuários cadastrados na aplicação;
 >    - aplicação possui rotas de monitoramento da aplicação como:
@@ -73,12 +73,10 @@ a documentação referente aos parâmetros de entrada e saída de cada rota da A
    	* atenção: só é possível ter os end-points funcionando, após clonar o projeto e executá-lo em uma IDE de sua escolha ou via linha de comando;
 
 
-###    Rotas de boas vindas GET
+###    Rota de boas vindas < GET >
 	http://localhost:8080/digital-wallet/hello-world
 
-
-
-###    Rotas para requisições do tipo POST
+###    Requisições do tipo POST
 
 ###### Cadastrar usuario:
 	http://localhost:8080/digital-wallet/users
@@ -92,7 +90,7 @@ a documentação referente aos parâmetros de entrada e saída de cada rota da A
 ###### Cadastrar categorias:
 	http://localhost:8080/digital-wallet/users/{user_id}/categories
 
-###    Rotas para requisições do tipo GET
+###    Requisições do tipo GET
 
 ######  Listar todos os usuarios (Gerencial - acesso somente via perfil "ADMIN"):
 	https://localhost/digital-wallet/management
@@ -121,7 +119,7 @@ a documentação referente aos parâmetros de entrada e saída de cada rota da A
 ###### Listar todas as categorias previamente cadastradas:
 	http://localhost:8080/digital-wallet/users/{user_id}/categories
 
-####    Rotas para requisições do tipo DELETE
+####    Requisições do tipo DELETE
         
 ###### Excluir a conta (do usuario logado):
 	http://localhost:8080/digital-wallet/users/{user_id}
@@ -132,9 +130,9 @@ a documentação referente aos parâmetros de entrada e saída de cada rota da A
 ###### Excluir uma categoria:        
 	http://localhost:8080/digital-wallet/users/{user_id}/categories/{category_id}
         
-####    Rotas para requisições do tipo PUT
+####    Requisições do tipo PUT
             
-###### Atualizasr um lançamento específico:
+###### Atualizar um lançamento específico:
 	http://localhost:8080/digital-wallet/users/{user_id}/entries/{entry_id}
 
 ###### Atualizar dados da conta (do usuario logado):
@@ -158,7 +156,7 @@ a documentação referente aos parâmetros de entrada e saída de cada rota da A
 
 ##  Como executar o projeto
 
-##### Requisitos necessários no computador:
+##### Requisitos mínimos necessários para rodar a aplicação no computador:
 
 -    Java ( no mínimo versão 17 )
 -    Maven
